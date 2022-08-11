@@ -1,25 +1,24 @@
 {
-  "name": "nutrinear2",
+  "name": "movie-trend-visualizer",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "16.14.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
     "build": "cd client && npm install && npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/myuksel123/NutriNear2.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/myuksel123/NutriNear2/issues"
-  },
-  "homepage": "https://github.com/myuksel123/NutriNear2#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "chart.js": "^3.7.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "oracledb": "^5.3.0",
+    "react-chartjs-2": "^4.1.0",
+    "react-router-dom": "^5.2.0"
   }
 }
