@@ -1,0 +1,25 @@
+{
+  "name": "nutrinear2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "build": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myuksel123/NutriNear2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myuksel123/NutriNear2/issues"
+  },
+  "homepage": "https://github.com/myuksel123/NutriNear2#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
