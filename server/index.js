@@ -3,9 +3,28 @@ const cors = require('cors');
 const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
-const oracledb = require('oracledb');
-//const { resolveSoa } = require('dns');
-//oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
+const { Client } = require("pg");
+
+
+const client = new Client({
+  user: "postgres",
+  host: "localhost",
+  database: "food",
+  password: "admin",
+  port: 5432,
+});
+
+client.connect();
+
+client.query('Select * from public."Nutrients"', (err,res)=>{
+  if(!err){
+    console.log(res.rows);
+  }
+  else{
+    console.log(err.message);
+  }
+  client.end;
+})
 
 app.use(cors());
 
