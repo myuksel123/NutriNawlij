@@ -18,7 +18,8 @@ client.connect();
 
 client.query('Select * from public."Nutrients"', (err,res)=>{
   if(!err){
-    console.log(res.rows);
+    const obj = res.rows[0].name;
+    console.log(obj);
   }
   else{
     console.log(err.message);

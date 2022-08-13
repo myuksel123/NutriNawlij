@@ -1,27 +1,30 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import Axios from "axios";
 import "../App.css";
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
-  const [isLoading, setLoading] = React.useState(true);
 
-  if (isLoading) {
-    console.log('Loading');
-    return <div className="App">Loading...</div>;
-  }
-
-  // pass the height, width, and data as props to <LineChart />
-  // data object contains label (X-Axis) and value (Y-Axis) as well as the tooltipContent we want to show hovering over the chart
   console.log("render");
   return (
-    <Router>
-      <div className="home">        
-        <div class="container">
-        </div>
-      </div>
-    </ Router>
+    <div class ="body">
+    <div class="header">
+    Welcome to NutriNear
+</div>
+<div class = "content">
+    I'm here to help you find nutritious foods, nearby :)
+    <div class = "options">
+    <NavLink to="/questions"><button>
+      Let's Begin!</button></NavLink>
+</div>
+</div>
+
+<div class = "footer">
+        Copyright @ Meryem Y
+</div>
+</div>
   );
 }
 
