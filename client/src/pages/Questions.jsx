@@ -1,5 +1,6 @@
-import { render } from "react-dom";
+import { NavLink } from 'react-router-dom';
 import React, { useState } from 'react'
+import Catalog from './Catalog';
 function App(){
     const [vitA,setVitA] = useState(false);
     const [vitAColor,setVitAColor] = useState('gray');
@@ -22,17 +23,28 @@ function App(){
     const [vitB7,setVitB7] = useState(false);
     const [vitB7Color,setVitB7Color] = useState('gray');
 
-    const [vitB8,setVitB8] = useState(false);
-    const [vitB8Color,setVitB8Color] = useState('gray');
-
     const [vitB9,setVitB9] = useState(false);
     const [vitB9Color,setVitB9Color] = useState('gray');
 
-    const [vitB10,setVitB10] = useState(false);
-    const [vitB10Color,setVitB10Color] = useState('gray');
+    const [vitB12,setVitB12] = useState(false);
+    const [vitB12Color,setVitB12Color] = useState('gray');
 
-    const [vitB11,setVitB11] = useState(false);
-    const [vitB11Color,setVitB11Color] = useState('gray');
+    const [vitC,setVitC] = useState(false);
+    const [vitCColor,setVitCColor] = useState('gray');
+
+    const [vitD,setVitD] = useState(false);
+    const [vitDColor,setVitDColor] = useState('gray');
+
+    const [vitE,setVitE] = useState(false);
+    const [vitEColor,setVitEColor] = useState('gray');
+
+    const [vitK,setVitK] = useState(false);
+    const [vitKColor,setVitKColor] = useState('gray');
+
+    const [Calcium,setCalcium] = useState(false);
+    const [CalciumColor,setCalciumColor] = useState('gray');
+    
+
 
     return(
         <div>
@@ -116,20 +128,64 @@ function App(){
         }} 
          style={{ backgroundColor: vitB5Color }}>B5(pantothenic acid)</button>
 
+
             <button onClick ={() => {
         const bool = !vitB6;
             setVitB6(!vitB6); 
           bool ? setVitB6Color("red")  : setVitB6Color("gray");  
         }} 
          style={{ backgroundColor: vitB6Color }}>B6(pyridoxine)</button>
-            <button >B7(biotin)</button>
-            <button  >B9(folate)</button>
-            <button >B12(cobalamin)</button>
-            <button >C</button>
-            <button >D</button>
-            <button >E</button>
-            <button >K</button>
+
+            <button onClick ={() => {
+        const bool = !vitB7;
+            setVitB7(!vitB7); 
+          bool ? setVitB7Color("red")  : setVitB7Color("gray");  
+        }} 
+         style={{ backgroundColor: vitB7Color }} >B7(biotin)</button>
+
+            <button onClick ={() => {
+        const bool = !vitB9;
+            setVitB9(!vitB9); 
+          bool ? setVitB9Color("red")  : setVitB9Color("gray");  
+        }} 
+         style={{ backgroundColor: vitB9Color }} >B9(folate)</button>
+
+            <button onClick ={() => {
+        const bool = !vitB12;
+            setVitB12(!vitB12); 
+          bool ? setVitB12Color("red")  : setVitB12Color("gray");  
+        }} 
+         style={{ backgroundColor: vitB12Color }}>B12(cobalamin)</button>
+
+            <button onClick={() => {
+        const bool = !vitC;
+        setVitC(bool);
+          bool ? setVitCColor("red")  : setVitCColor("gray");
+        }} 
+         style={{ backgroundColor: vitCColor }} >C</button>
+         
+            <button onClick={() => {
+        const bool = !vitD;
+        setVitD(bool);
+          bool ? setVitDColor("red")  : setVitDColor("gray");
+        }} 
+         style={{ backgroundColor: vitDColor }}  >D</button>
+
+            <button onClick={() => {
+        const bool = !vitE;
+        setVitE(bool);
+          bool ? setVitEColor("red")  : setVitEColor("gray");
+        }} 
+         style={{ backgroundColor: vitEColor }}>E</button>
+
+            <button onClick={() => {
+        const bool = !vitK;
+        setVitK(bool);
+          bool ? setVitKColor("red")  : setVitKColor("gray");
+        }} 
+         style={{ backgroundColor: vitKColor }}>K</button>
             </div>
+
             <div class ="section">
             <h1>Minerals</h1>
             <button>Calcium</button>
@@ -147,6 +203,7 @@ function App(){
             <button>Flouride</button>
             <button>Selenium</button>
             </div>
+
         </div>
     </div>
     <div id="restrictions">
@@ -161,11 +218,9 @@ function App(){
         <button>Select</button>
             </form>
     </div>
-    <div class = "footer">
-    <a href ="catalog.html">
-        <button>Next</button>
-        </a>
-    </div>
+    <NavLink to="/catalog"><button>
+    Next</button></NavLink>
+    <Catalog VitaminA={vitA}/>
         </div>
     );
 }
