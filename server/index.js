@@ -3,8 +3,14 @@ const cors = require('cors');
 const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
+const { resolveSoa } = require('dns');
 const { Client } = require("pg");
 
+
+app.use(cors());
+let obj;
+
+async function run(){
 
 const client = new Client({
   user: "postgres",
@@ -18,7 +24,7 @@ client.connect();
 
 client.query('Select * from public."Nutrients"', (err,res)=>{
   if(!err){
-    const obj = res.rows[0].name;
+   obj = res.rows;
     console.log(obj);
   }
   else{
@@ -27,9 +33,14 @@ client.query('Select * from public."Nutrients"', (err,res)=>{
   client.end;
 })
 
-app.use(cors());
+}
+run();
 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.get("/catalog", (req,res)=>{
+  res.send(obj);
+});
+
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));

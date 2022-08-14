@@ -43,9 +43,59 @@ function App(){
 
     const [Calcium,setCalcium] = useState(false);
     const [CalciumColor,setCalciumColor] = useState('gray');
-    
 
+    const [Phos,Phosset] = useState(false);
+    const [PhosColor,setPhosColor] = useState('gray');
 
+    const [Mag,Magset] = useState(false);
+    const [MagColor,setMagColor] = useState('gray');
+
+    const [Sod,Sodset] = useState(false);
+    const [SodColor,setSodColor] = useState('gray');
+
+    const [Chlo,Chloset] = useState(false);
+    const [ChloColor,setChloColor] = useState('gray');
+
+    const [Pot,Potset] = useState(false);
+    const [PotColor,setPotColor] = useState('gray');
+
+    const [Sul,Sulset] = useState(false);
+    const [SulColor,setSulColor] = useState('gray');
+
+    const [Ir,Ironset] = useState(false);
+    const [IrColor,setIrColor] = useState('gray');
+
+    const [Mang,Mangset] = useState(false);
+    const [MangColor,setMangColor] = useState('gray');
+
+    const [Cop,Copset] = useState(false);
+    const [CopColor,setCopColor] = useState('gray');
+
+    const [Zi,Ziset] = useState(false);
+    const [ZiColor,setZiColor] = useState('gray');
+
+    const [Io,Ioset] = useState(false);
+    const [IoColor,setIoColor] = useState('gray');
+
+    const [Flo,Floset] = useState(false);
+    const [FloColor,setFloColor] = useState('gray');
+
+    const [Sel,Selset] = useState(false);
+    const [SelColor,setSelColor] = useState('gray');
+
+    const [Vegn,Vegnset] = useState(false);
+    const [VegnColor,setVegnColor] = useState('gray');
+
+    const [Vege,Vegeset] = useState(false);
+    const [VegeColor,setVegeColor] = useState('gray');
+
+    const [Hal,Halset] = useState(false);
+    const [HalColor,setHalColor] = useState('gray');
+
+    const [Kosh,Koshset] = useState(false);
+    const [KoshColor,setKoshColor] = useState('gray');
+
+    const section = document.getElementsByClassName('scale');
     return(
         <div>
             <div id = "macros">
@@ -188,30 +238,140 @@ function App(){
 
             <div class ="section">
             <h1>Minerals</h1>
-            <button>Calcium</button>
-            <button>Phosphorus</button>
-            <button>Magnesium</button>
-            <button>Sodium</button>
-            <button>Chloride</button>
-            <button>Potassium</button>
-            <button>Sulfur</button>
-            <button>Iron</button>
-            <button>Manganese</button>
-            <button>Copper</button>
-            <button>Zinc</button>
-            <button>Iodine</button>
-            <button>Flouride</button>
-            <button>Selenium</button>
+
+            <button onClick={() => {
+        const bool = !Calcium;
+        setCalcium(bool);
+          bool ? setCalciumColor("red")  : setCalciumColor("gray");
+        }} 
+         style={{ backgroundColor: CalciumColor }}>Calcium</button>
+
+            <button onClick={() => {
+        const bool = !Phos;
+        Phosset(bool);
+          bool ? setPhosColor("red")  : setPhosColor("gray");
+        }} 
+         style={{ backgroundColor: PhosColor }}>Phosphorus</button>
+
+            <button onClick={() => {
+        const bool = !Mag;
+        Magset(bool);
+          bool ? setMagColor("red")  : setMagColor("gray");
+        }} 
+         style={{ backgroundColor: MagColor }}>Magnesium</button>
+
+            <button onClick={() => {
+        const bool = !Sod;
+        Sodset(bool);
+          bool ? setSodColor("red")  : setSodColor("gray");
+        }} 
+         style={{ backgroundColor: SodColor }}>Sodium</button>
+
+            <button  onClick={() => {
+        const bool = !Chlo;
+        Chloset(bool);
+          bool ? setChloColor("red")  : setChloColor("gray");
+        }} 
+         style={{ backgroundColor: ChloColor }}>Chloride</button>
+
+            <button onClick={() => {
+        const bool = !Pot;
+        Potset(bool);
+          bool ? setPotColor("red")  : setPotColor("gray");
+        }} 
+         style={{ backgroundColor: PotColor }}>Potassium</button>
+
+            <button onClick={() => {
+        const bool = !Sul;
+        Sulset(bool);
+          bool ? setSulColor("red")  : setSulColor("gray");
+        }} 
+         style={{ backgroundColor: SulColor }}>Sulfur</button>
+
+            <button onClick={() => {
+        const bool = !Ir;
+        Ironset(bool);
+          bool ? setIrColor("red")  : setIrColor("gray");
+        }} 
+         style={{ backgroundColor: IrColor }}>Iron</button>
+
+            <button onClick={() => {
+        const bool = !Mang;
+        Mangset(bool);
+          bool ? setMangColor("red")  : setMangColor("gray");
+        }} 
+         style={{ backgroundColor: MangColor }}>Manganese</button>
+
+            <button onClick={() => {
+        const bool = !Cop;
+        Copset(bool);
+          bool ? setCopColor("red")  : setCopColor("gray");
+        }} 
+         style={{ backgroundColor: CopColor }}>Copper</button>
+
+            <button onClick={() => {
+        const bool = !Zi;
+        Ziset(bool);
+          bool ? setZiColor("red")  : setZiColor("gray");
+        }} 
+         style={{ backgroundColor: ZiColor }}>Zinc</button>
+
+            <button onClick={() => {
+        const bool = !Io;
+        Ioset(bool);
+          bool ? setIoColor("red")  : setIoColor("gray");
+        }} 
+         style={{ backgroundColor: IoColor }}>Iodine</button>
+
+            <button onClick={() => {
+        const bool = !Flo;
+        Floset(bool);
+          bool ? setFloColor("red")  : setFloColor("gray");
+        }} 
+         style={{ backgroundColor: FloColor }}>Flouride</button>
+
+            <button onClick={() => {
+        const bool = !Sel;
+        Selset(bool);
+          bool ? setSelColor("red")  : setSelColor("gray");
+        }} 
+         style={{ backgroundColor: SelColor }}>Selenium</button>
+
             </div>
 
         </div>
     </div>
     <div id="restrictions">
         <h1>Do any of these apply to you?</h1>
-        <button>Vegan</button>
-        <button>Vegetarian</button>
-        <button>Halal</button>
-        <button>Kosher</button>
+
+        <button onClick={() => {
+        const bool = !Vegn;
+        Vegnset(bool);
+          bool ? setVegnColor("red")  : setVegnColor("gray");
+        }} 
+         style={{ backgroundColor: VegnColor }}>Vegan</button>
+
+        <button onClick={() => {
+        const bool = !Vege;
+        Vegeset(bool);
+          bool ? setVegeColor("red")  : setVegeColor("gray");
+        }} 
+         style={{ backgroundColor: VegeColor }}>Vegetarian</button>
+
+        <button onClick={() => {
+        const bool = !Hal;
+        Halset(bool);
+          bool ? setHalColor("red")  : setHalColor("gray");
+        }} 
+         style={{ backgroundColor: HalColor }}>Halal</button>
+
+        <button onClick={() => {
+        const bool = !Kosh;
+        Koshset(bool);
+          bool ? setKoshColor("red")  : setKoshColor("gray");
+        }} 
+         style={{ backgroundColor: KoshColor }}>Kosher</button>
+
         <form action ="source.js" method = "post">
             <label  for="Allergies">Allergies:</label>
             <input type="text" id="allergies" name="allergies"></input>
@@ -220,7 +380,7 @@ function App(){
     </div>
     <NavLink to="/catalog"><button>
     Next</button></NavLink>
-    <Catalog VitaminA={vitA}/>
+    <Catalog VitaminA={vitA} VitaminB1 ={vitB1}/>
         </div>
     );
 }
