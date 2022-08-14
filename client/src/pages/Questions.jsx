@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import React, { useState } from 'react'
 import Catalog from './Catalog';
+
 function App(){
     const [vitA,setVitA] = useState(false);
     const [vitAColor,setVitAColor] = useState('gray');
@@ -95,7 +96,7 @@ function App(){
     const [Kosh,Koshset] = useState(false);
     const [KoshColor,setKoshColor] = useState('gray');
 
-    const section = document.getElementsByClassName('scale');
+  
     return(
         <div>
             <div id = "macros">
@@ -109,7 +110,7 @@ function App(){
 
         <div class = "macro">
             How much of each fat?
-            <div class = "scale">
+            <div id = "scale">
                 Unsaturated
             </div>
             <div class = "scale">
@@ -379,8 +380,11 @@ function App(){
             </form>
     </div>
     <NavLink to="/catalog"><button>
-    Next</button></NavLink>
-    <Catalog VitaminA={vitA} VitaminB1 ={vitB1}/>
+    Next</button>
+    </NavLink>
+    <div id="Catalog">
+    <Catalog id="Catalog" VitaminA = {vitA}/>
+    </div>
         </div>
     );
 }

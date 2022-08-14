@@ -1,19 +1,20 @@
 import React from "react";
-import Axios from "axios";
 import {useState,useEffect} from 'react';
 
-function Catalog(props){
+const Catalog = (props) =>{
     console.log(props);
-    const [data, setData] = useState({});
+    const [data, setData] = useState([]);
+    const [results, setResults] = useState([]);
     useEffect(()=>{
     fetch("/catalog").then(
         res=>res.json())
         .then(data=>setData(data));
-    },[]);
-    console.log(data);
+    }, []);
+    for(let i=0; i<data.length; i++)
+    results.push(data[i].name + `\n`);
     return(
         <div>
-
+            {results}
         </div>
     );
 }
