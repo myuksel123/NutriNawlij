@@ -3,9 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
-const { resolveSoa } = require('dns');
 const { Client } = require("pg");
-const { prependOnceListener } = require('process');
 
 
 app.use(cors());
@@ -492,10 +490,88 @@ food_nutrition.amount, food.description from public."Nutrients"
 run();
 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
-app.get("/catalog", (req,res)=>{
-  res.send(obj);
-});
 
+app.get("/VitaminA", (req,res)=>{
+  res.send(VitaminA);
+});
+app.get("/VitaminB1", (req,res)=>{
+  res.send(VitaminB1);
+});
+app.get("/VitaminB2", (req,res)=>{
+  res.send(VitaminB2);
+});
+app.get("/VitaminB3", (req,res)=>{
+  res.send(VitaminB3);
+});
+app.get("/VitaminB5", (req,res)=>{
+  res.send(VitaminB5);
+});
+app.get("/VitaminB6", (req,res)=>{
+  res.send(VitaminB6);
+});
+app.get("/VitaminB7", (req,res)=>{
+  res.send(VitaminB7);
+});
+app.get("/VitaminB9", (req,res)=>{
+  res.send(VitaminB9);
+});
+app.get("/VitaminB12", (req,res)=>{
+  res.send(VitaminB12);
+});
+app.get("/VitaminC", (req,res)=>{
+  res.send(VitaminC);
+});
+app.get("/VitaminD", (req,res)=>{
+  res.send(VitaminD);
+});
+app.get("/VitaminE", (req,res)=>{
+  res.send(VitaminE);
+});
+app.get("/VitaminK", (req,res)=>{
+  res.send(VitaminK);
+});
+app.get("/Calcium", (req,res)=>{
+  res.send(Calcium);
+});
+app.get("/Phosphorus", (req,res)=>{
+  res.send(Phos);
+});
+app.get("/Magnesium", (req,res)=>{
+  res.send(Mag);
+});
+app.get("/Sodium", (req,res)=>{
+  res.send(Sod);
+});
+app.get("/Chloride", (req,res)=>{
+  res.send(Chlo);
+});
+app.get("/Potassium", (req,res)=>{
+  res.send(Pot);
+});
+app.get("/Sulfur", (req,res)=>{
+  res.send(Sul);
+});
+app.get("/Iron", (req,res)=>{
+  res.send(Ir);
+});
+app.get("/Manganese", (req,res)=>{
+  res.send(Mang);
+});
+app.get("/Copper", (req,res)=>{
+  res.send(Cop);
+});
+app.get("/Zinc", (req,res)=>{
+  res.send(Zi);
+});
+app.get("/Iodine", (req,res)=>{
+  res.send(Io);
+});
+app.get("/Flouride", (req,res)=>{
+  res.send(Flo);
+});
+app.get("/Selenium", (req,res)=>{
+  res.send(Sel);
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
