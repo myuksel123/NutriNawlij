@@ -5,7 +5,24 @@ import {useLocation} from 'react-router-dom'
 
 
 const Catalog = (props) =>{
-    const [VitaminA, setVitaminA] = useState([]);
+
+    //post data to SQL?
+    const[data,setData] = useState([]);
+    console.log(JSON.stringify(props.location.state))
+    useEffect(()=>{
+    fetch('/data',{
+        method: 'post',
+
+        body: JSON.stringify(props.location.state),
+
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    
+    })
+    }, []);
+
+   /* const [VitaminA, setVitaminA] = useState([]);
     const [VitaminB1, setVitaminB1] = useState([]);
     const [VitaminB2, setVitaminB2] = useState([]);
     const [VitaminB3, setVitaminB3] = useState([]);
@@ -30,7 +47,7 @@ const Catalog = (props) =>{
     const [Sel,Selset] = useState([]);
 
 
-    const[data,setData] = useState([]);
+    
     const [results, setResults] = useState([]);
     //console.log(props.location.state);
 
@@ -229,11 +246,10 @@ console.log(data);
  for(let i=0; i<data.length; i++){
     results.push(<div class ="options">{data[i].description} has {
        data[i].amount} {data[i].unit} {data[i].name}  per 100g</div>);
-    }
+    }*/
 
     return(
         <div>
-            {results}
         </div>
     );
 }

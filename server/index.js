@@ -4,10 +4,15 @@ const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const { Client } = require("pg");
+const bodyParser = require("body-parser");
+const router = express.Router();
 
-
+//Here we are configuring express to use body-parser as middle-ware.
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cors());
-let VitaminA;
+
+/*let VitaminA;
 let VitaminB1;
 let VitaminB2;
 let VitaminB3;
@@ -34,10 +39,7 @@ let Zi;
 let Io;
 let Flo;
 let Sel;
-
-
-async function run(){
-
+*/
 const client = new Client({
   user: "postgres",
   host: "localhost",
@@ -47,6 +49,13 @@ const client = new Client({
 });
 
 client.connect();
+
+app.use(express.static(path.resolve(__dirname, '../client/build')));
+app.post('/data', (req,res)=>{
+  console.log(req.body);
+})
+/*
+async function run(){
 
 //Vitamin A Query
 client.query(`Select "Nutrients".name, "Nutrients".unit,
@@ -489,7 +498,6 @@ food_nutrition.amount, food.description from public."Nutrients"
 
 run();
 
-app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.get("/VitaminA", (req,res)=>{
   res.send(VitaminA);
@@ -573,10 +581,11 @@ app.get("/Selenium", (req,res)=>{
   res.send(Sel);
 });
 
+
+*/
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 });
-
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
