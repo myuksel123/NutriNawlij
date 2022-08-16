@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import React, { useState } from 'react'
 import Catalog from './Catalog';
 
@@ -379,12 +379,16 @@ function App(){
         <button>Select</button>
             </form>
     </div>
-    <NavLink to="/catalog"><button>
+    <Link
+     to={{
+      pathname:"../catalog",
+      state: {vitA,vitB1,vitB2,vitB3,vitB5,vitB6,vitB7,vitB9,
+      vitB12,vitC,vitD,vitE,vitK,Calcium,Phos,Mag,Sod,Chlo,Pot,Sul,Ir,
+    Mang,Cop,Zi,Io,Sel},
+     }}><button>
     Next</button>
-    </NavLink>
-    <div id="Catalog">
-    <Catalog id="Catalog" VitaminA = {vitA}/>
-    </div>
+    </Link>
+  
         </div>
     );
 }
