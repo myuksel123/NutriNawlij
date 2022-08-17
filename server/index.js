@@ -53,8 +53,11 @@ app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.post('/data', async function(req,res){
   console.log(req.body)
   string = `Select AVG(Pctrank) OVER (PARTITION BY public.foodinfo.description)
-  as theAvg, * from public.foodinfo
-  WHERE "name"= `;
+  as theAvg, dense_rank() OVER(PARTITION BY public.foodinfo.description ORDER BY name) 
+  + dense_rank() over (partition by public.foodinfo.description
+     order by name desc) 
+- 1 as numVitamins, * from public.foodinfo
+  WHERE ("name"= `;
   let count =0;
   
     if(req.body.vitA){
@@ -256,7 +259,7 @@ if(req.body.Sel){
 
 
 
-string = string + `ORDER BY theAvg desc FETCH FIRST 5000 ROWS ONLY;`;
+string = string + `) AND amount>0 ORDER BY  numVitamins desc, theAvg desc, description FETCH FIRST 5000 ROWS ONLY;`;
 
 data = await run(string);
 res.send(data);
