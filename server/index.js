@@ -12,6 +12,14 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
+
+/*
+Select avg(Pctrank) OVER (PARTITION BY public.foodinfo.description)
+as theAvg, * from public.foodinfo
+WHERE "name"='Calcium, Ca' AND amount>0 ORDER BY theAvg desc;
+*/
+
+
 let data;
 const client = new Client({
   user: "postgres",
@@ -28,7 +36,6 @@ const run = (string)=> new Promise((resolve, reject) =>{
   client.query(string, (err,res)=>{
     if(!err){
       data = res;
-     //console.log(data);
      resolve(data);
     }
     else{
@@ -44,11 +51,10 @@ let string;
 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.post('/data', async function(req,res){
-  string = `Select "Nutrients".name, "Nutrients".unit,
-  food_nutrition.amount, food.description from public."Nutrients"
-   INNER JOIN public.food_nutrition ON food_nutrition.nutrient_id = "Nutrients".id
-   INNER JOIN public.food ON food.fdc_id = food_nutrition.fdc_id
-    WHERE "Nutrients"."name" = `;
+  console.log(req.body)
+  string = `Select avg(Pctrank) OVER (PARTITION BY public.foodinfo.description)
+  as theAvg, * from public.foodinfo
+  WHERE "name"= `;
   let count =0;
   
     if(req.body.vitA){
@@ -57,91 +63,91 @@ app.post('/data', async function(req,res){
     }
     if(req.body.vitB1){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'THIAMIN' `;
       count++;;
     }
     if(req.body.vitB2){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Riboflavin' `;
       count++;
     }
     if(req.body.vitB3){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Niacin' `;
       count++;
     }
     if(req.body.vitB5){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Pantothenic Acid' `;
       count++
     }
     if(req.body.vitB6){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Vitamin B-6' `;
       count++;
     }
     if(req.body.vitB7){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Biotin' `;
       count++;
     }
     if(req.body.vitB9){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Folate, Total' `;
       count++;
     }
     if(req.body.vitB12){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Vitamin B-12' `;
       count++;
     }
     if(req.body.vitC){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Vitamin C, total ascorbic acid' `;
       count++;
     }
     if(req.body.vitD){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Vitamin D (D2 + D3)' `;
       count++;
     }
     if(req.body.vitE){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Vitamin E' `;
       count++;
     }
     if(req.body.vitK){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Vitamin K (phylloquinone)' `;
       count++;
     }
     if(req.body.Calcium){
       if(count >0){
-        string = string + 'OR "Nutrients"."name" = '
+        string = string + 'OR "name" = '
       }
       string = string + `'Calcium, Ca' `;
       count++;
@@ -149,7 +155,7 @@ app.post('/data', async function(req,res){
 
 if(req.body.Phos){
   if(count >0){
-    string = string + 'OR "Nutrients"."name" = '
+    string = string + 'OR "name" = '
   }
   string = string + `'Phosphorus, P' `;
   count++;
@@ -157,48 +163,100 @@ if(req.body.Phos){
 
 if(req.body.Phos){
   if(count >0){
-    string = string + 'OR "Nutrients"."name" = '
+    string = string + 'OR "name" = '
   }
   string = string + `'Phosphorus, P' `;
   count++;
 }
 if(req.body.Mag){
   if(count >0){
-    string = string + 'OR "Nutrients"."name" = '
+    string = string + 'OR "name" = '
   }
   string = string + `'Magnesium, Mg' `;
   count++;
 }
 if(req.body.Sod){
   if(count >0){
-    string = string + 'OR "Nutrients"."name" = '
+    string = string + 'OR "name" = '
   }
   string = string + `'Sodium, Na' `;
   count++;
 }
 if(req.body.Chlo){
   if(count >0){
-    string = string + 'OR "Nutrients"."name" = '
+    string = string + 'OR "name" = '
   }
   string = string + `'Chlorine, Cl' `;
   count++;
 }
 if(req.body.Chlo){
   if(count >0){
-    string = string + 'OR "Nutrients"."name" = '
+    string = string + 'OR "name" = '
   }
   string = string + `'Chlorine, Cl' `;
   count++;
 }
 if(req.body.Pot){
   if(count >0){
-    string = string + 'OR "Nutrients"."name" = '
+    string = string + 'OR "name" = '
   }
   string = string + `'Potassium, K' `;
   count++;
 }
-string = string + `AND food_nutrition.amount >0
-Order by food_nutrition.amount desc`;
+if(req.body.Sul){
+  if(count >0){
+    string = string + 'OR "name" = '
+  }
+  string = string + `'Sulfur, S' `;
+  count++;
+}
+if(req.body.Ir){
+  if(count >0){
+    string = string + 'OR "name" = '
+  }
+  string = string + `'Iron, Fe' `;
+  count++;
+}
+if(req.body.Mang){
+  if(count >0){
+    string = string + 'OR "name" = '
+  }
+  string = string + `'Manganese, Mn' `;
+  count++;
+}
+if(req.body.Cop){
+  if(count >0){
+    string = string + 'OR "name" = '
+  }
+  string = string + `'Copper, Cu' `;
+  count++;
+}
+if(req.body.Zi){
+  if(count >0){
+    string = string + 'OR "name" = '
+  }
+  string = string + `'Zinc, Zn' `;
+  count++;
+}
+if(req.body.Io){
+  if(count >0){
+    string = string + 'OR "name" = '
+  }
+  string = string + `'Iodine, I' `;
+  count++;
+}
+if(req.body.Sel){
+  if(count >0){
+    string = string + 'OR "name" = '
+  }
+  string = string + `'Selenium, Se' `;
+  count++;
+}
+
+
+
+
+string = string + `AND amount>0 ORDER BY theAvg desc;`;
 
 data = await run(string);
 res.send(data);

@@ -1,7 +1,5 @@
-import { checkPropTypes } from "prop-types";
 import React from "react";
 import {useState,useEffect} from 'react';
-import {useLocation} from 'react-router-dom'
 
 
 const Catalog = (props) =>{
