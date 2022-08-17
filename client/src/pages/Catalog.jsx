@@ -22,14 +22,41 @@ const Catalog = (props) =>{
     }).then(res=>res.json()).then(data=>setData(data));
     }, []);
     console.log(data);
-
- for(let i=0; i<data.length; i++){
-    results.push(<div class ="options">{data[i].description} has {
-       data[i].amount} {data[i].unit} {data[i].name}  per 100g</div>);
+let countfood=0;
+let previous = "";
+let nutritiousinfo = [];
+let nutritionamount =[];
+let nutritionunit = [];
+ for(let i=0; i<data.rowCount; i++){
+    if(i ==0 || data.rows[i].description ==previous){
+        nutritiousinfo.push(data.rows[i].name);
+        nutritionamount.push(data.rows[i].amount);
+        nutritionunit.push(data.rows[i].unit);
     }
+    else{
+    let string = `<div>` +previous+ `</div>`;
+    let mydiv = document.createElement('div');
+    for(let j=0; j<nutritiousinfo.length;j++){
+        string = string + `<div>` +nutritiousinfo[j] +
+        `: ` + nutritionamount[j] +` `+
+        nutritionunit[j] + '</div>';
+    }
+    mydiv.innerHTML = string;
+    mydiv.classList = "fooditem";
+    document.getElementById('hello').appendChild(mydiv);
+    nutritiousinfo=[];
+    nutritionamount =[];
+    nutritionunit =[];
+    nutritiousinfo.push(data.rows[i].name);
+    nutritionamount.push(data.rows[i].amount);
+    nutritionunit.push(data.rows[i].unit);
+    countfood++;
+    }
+    previous = data.rows[i].description;
+}
 
     return(
-        <div>
+        <div id='hello'>
             {results}
         </div>
     );

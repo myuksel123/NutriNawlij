@@ -24,3 +24,12 @@
   #Catalog{
     font-size: 0px;
   }
+#root{
+    display: flex;
+}
+.fooditem{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 250px;
+}
