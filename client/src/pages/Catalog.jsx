@@ -35,7 +35,7 @@ let string = ``;
     }
     else{
     string = string+ `<div class = 'fooditem' >
-    <div>` +previous+ `</div>`;
+    <div class = "foodname">` +previous+ `</div>`;
     let mydiv = document.createElement('div');
     for(let j=0; j<nutritiousinfo.length;j++){
         string = string + `<div>` +nutritiousinfo[j] +

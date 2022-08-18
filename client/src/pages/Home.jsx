@@ -10,13 +10,13 @@ function App() {
   console.log("render");
   return (
     <div class ="body">
-    <div class="header">
-    Welcome to NutriNear
+    <div class="header" id="welcome">
+    Welcome to NutriNawlij
 </div>
 <div class = "content">
     I'm here to help you find nutritious foods, nearby :)
     <div class = "options">
-    <NavLink to="/questions"><button>
+    <NavLink to="/questions"><button class="next">
       Let's Begin!</button></NavLink>
 </div>
 </div>

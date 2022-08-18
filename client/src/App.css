@@ -22,6 +22,9 @@
       font: bold;
       color: greenyellow;
   }
+  #welcome{
+    font-size: 100px;
+  }
   #Catalog{
     font-size: 0px;
   }
@@ -56,4 +59,22 @@
 .buttons{
   display: flex;
   gap: 15px;
+}
+.next{
+  background-color: lawngreen;
+  width: 300px;
+  height: 70px;
+  font-size: 40px;
+}
+.fooditem{
+  margin: 15px;
+  height: 300px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+}
+.foodname{
+  font-size: 25px;
 }
