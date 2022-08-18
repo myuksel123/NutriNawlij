@@ -14,20 +14,36 @@
   .options{
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 15px;
   }
   .header{
-      font-size: 30px;
+      font-size: 50px;
       font: bold;
       color: greenyellow;
   }
   #Catalog{
     font-size: 0px;
   }
-.fooditem{
+.column{
     display: flex;
-    flex-direction: column;
-    padding: 5px;
-    width: 250px;
-    text-align: center;
+}
+.fooditem{
+  text-align: center;
+  border: solid black;
+}
+#micros{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+#questionspage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.macro{
+  display: flex;
 }

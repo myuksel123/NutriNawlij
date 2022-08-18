@@ -84,53 +84,94 @@ function App(){
     const [Sel,Selset] = useState(false);
     const [SelColor,setSelColor] = useState('gray');
 
-    const [Vegn,Vegnset] = useState(false);
-    const [VegnColor,setVegnColor] = useState('gray');
+    const [Protein,setProtein] = useState(false);
+    const [ProteinColor,setProteinColor] = useState('gray');
 
-    const [Vege,Vegeset] = useState(false);
-    const [VegeColor,setVegeColor] = useState('gray');
+    const [Saturated,setSaturated] = useState(false);
+    const [SaturatedColor,setSaturatedColor] = useState('gray');
 
-    const [Hal,Halset] = useState(false);
-    const [HalColor,setHalColor] = useState('gray');
+    const [PolyUnsaturated,setPolyUnsaturated] = useState(false);
+    const [PolyUnsaturatedColor,setPolyUnsaturatedColor] = useState('gray');
 
-    const [Kosh,Koshset] = useState(false);
-    const [KoshColor,setKoshColor] = useState('gray');
+    const [MonoUnsaturated,setMonoUnsaturated] = useState(false);
+    const [MonoUnsaturatedColor,setMonoUnsaturatedColor] = useState('gray');
 
-  
+    const [Starch,setStarch] = useState(false);
+    const [StarchColor,setStarchColor] = useState('gray');
+
+    const [Sugar,setSugar] = useState(false);
+    const [SugarColor,setSugarColor] = useState('gray');
+
+    const [Fiber,setFiber] = useState(false);
+    const [FiberColor,setFiberColor] = useState('gray');
+
     return(
-        <div>
+        <div id = 'questionspage'>
             <div id = "macros">
     <div class = "header">Macros</div>
     <div class = "options">
         <div class = "macro">
-        <div class = "scale">
-            How much protein?
-            </div>  
+        <button onClick={() => {
+        const bool = !Protein;
+        setProtein(bool);
+          bool ? setProteinColor("red")  : setProteinColor("gray");
+        }} 
+         style={{ backgroundColor: ProteinColor }}>Protein</button> 
         </div>
 
         <div class = "macro">
-            How much of each fat?
-            <div id = "scale">
-                Unsaturated
-            </div>
-            <div class = "scale">
-                Omega-3s
-            </div>
-            <div class = "scale">
-                Saturated
-            </div>
-            <div class = "scale">
-                Omega-6s
-            </div>
+            Fats
+            <button onClick={() => {
+        const bool = !PolyUnsaturated;
+        setPolyUnsaturated(bool);
+          bool ? setPolyUnsaturatedColor("red")  : setPolyUnsaturatedColor("gray");
+        }} 
+         style={{ backgroundColor: PolyUnsaturatedColor}}>Poly-Unsaturated</button>
+
+<button onClick={() => {
+        const bool = !MonoUnsaturated;
+        setMonoUnsaturated(bool);
+          bool ? setMonoUnsaturatedColor("red")  : setMonoUnsaturatedColor("gray");
+        }} 
+         style={{ backgroundColor: MonoUnsaturatedColor}}>Mono-Unsaturated</button>
+
+             <button onClick={() => {
+        const bool = !Saturated;
+        setSaturated(bool);
+          bool ? setSaturatedColor("red")  : setSaturatedColor("gray");
+        }} 
+         style={{ backgroundColor: SaturatedColor }}>Saturated</button>
+
+
         </div>
 
+
         <div class = "macro">
-            How much of each Carb?
-            <div class = "scale">
-                Starches (Complex Carbohydrates)
-            </div>
-            <div class = "scale">
-            </div>
+            Carbohydrates
+             
+           <button onClick={() => {
+        const bool = !Starch;
+        setStarch(bool);
+          bool ? setStarchColor("red")  : setStarchColor("gray");
+        }} 
+         style={{ backgroundColor: StarchColor}}>Starches 
+         (Complex Carohydrates)</button>
+
+         
+<button onClick={() => {
+        const bool = !Fiber;
+        setFiber(bool);
+          bool ? setFiberColor("red")  : setFiberColor("gray");
+        }} 
+         style={{ backgroundColor: FiberColor }}>Fiber</button>
+
+<button onClick={() => {
+        const bool = !Sugar;
+        setSugar(bool);
+          bool ? setSugarColor("red")  : setSugarColor("gray");
+        }} 
+         style={{ backgroundColor: SugarColor }}>Sugar</button>
+
         </div>
 
     </div>
@@ -138,7 +179,6 @@ function App(){
 
     <div id="micros">
         <div className ="header">Micros</div>
-        <h2>Select the ones you want to get more of</h2>
         <div className = "choice">
             <div className ="section">
             <h1>Vitamins</h1>
@@ -342,49 +382,12 @@ function App(){
 
         </div>
     </div>
-    <div id="restrictions">
-        <h1>Do any of these apply to you?</h1>
-
-        <button onClick={() => {
-        const bool = !Vegn;
-        Vegnset(bool);
-          bool ? setVegnColor("red")  : setVegnColor("gray");
-        }} 
-         style={{ backgroundColor: VegnColor }}>Vegan</button>
-
-        <button onClick={() => {
-        const bool = !Vege;
-        Vegeset(bool);
-          bool ? setVegeColor("red")  : setVegeColor("gray");
-        }} 
-         style={{ backgroundColor: VegeColor }}>Vegetarian</button>
-
-        <button onClick={() => {
-        const bool = !Hal;
-        Halset(bool);
-          bool ? setHalColor("red")  : setHalColor("gray");
-        }} 
-         style={{ backgroundColor: HalColor }}>Halal</button>
-
-        <button onClick={() => {
-        const bool = !Kosh;
-        Koshset(bool);
-          bool ? setKoshColor("red")  : setKoshColor("gray");
-        }} 
-         style={{ backgroundColor: KoshColor }}>Kosher</button>
-
-        <form action ="source.js" method = "post">
-            <label  for="Allergies">Allergies:</label>
-            <input type="text" id="allergies" name="allergies"></input>
-        <button>Select</button>
-            </form>
-    </div>
     <Link
      to={{
       pathname:"../catalog",
       state: {vitA,vitB1,vitB2,vitB3,vitB5,vitB6,vitB7,vitB9,
       vitB12,vitC,vitD,vitE,vitK,Calcium,Phos,Mag,Sod,Chlo,Pot,Sul,Ir,
-    Mang,Cop,Zi,Io,Sel},
+    Mang,Cop,Zi,Io,Sel,Protein,MonoUnsaturated,Saturated,PolyUnsaturated,Starch,Fiber,Sugar},
      }}><button>
     Next</button>
     </Link>

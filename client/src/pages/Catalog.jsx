@@ -6,7 +6,6 @@ const Catalog = (props) =>{
 
     //post data to SQL?
     const[data,setData] = useState([]);
-    const[results,setResults]=useState([]);
     console.log(JSON.stringify(props.location.state))
     useEffect(()=>{
     fetch('/data',{
@@ -27,6 +26,7 @@ let previous = "";
 let nutritiousinfo = [];
 let nutritionamount =[];
 let nutritionunit = [];
+let string = ``;
  for(let i=0; i<data.rowCount; i++){
     if(i ==0 || data.rows[i].description ==previous){
         nutritiousinfo.push(data.rows[i].name);
@@ -34,16 +34,21 @@ let nutritionunit = [];
         nutritionunit.push(data.rows[i].unit);
     }
     else{
-    let string = `<div>` +previous+ `</div>`;
+    string = string+ `<div class = 'fooditem' >
+    <div>` +previous+ `</div>`;
     let mydiv = document.createElement('div');
     for(let j=0; j<nutritiousinfo.length;j++){
         string = string + `<div>` +nutritiousinfo[j] +
         `: ` + nutritionamount[j] +` `+
         nutritionunit[j] + '</div>';
     }
+    string = string + `</div>`;
+    if(countfood%4==3){
     mydiv.innerHTML = string;
-    mydiv.classList = "fooditem";
+    string = ``;
+    mydiv.classList = "column";
     document.getElementById('hello').appendChild(mydiv);
+    }
     nutritiousinfo=[];
     nutritionamount =[];
     nutritionunit =[];
@@ -57,7 +62,6 @@ let nutritionunit = [];
 
     return(
         <div id='hello'>
-            {results}
         </div>
     );
 }
