@@ -111,6 +111,8 @@ function App(){
     <div class = "header">Macros</div>
     <div class = "options">
         <div class = "macro">
+          <h4>Protein</h4>
+          <div class = "buttons">
         <button onClick={() => {
         const bool = !Protein;
         setProtein(bool);
@@ -118,9 +120,11 @@ function App(){
         }} 
          style={{ backgroundColor: ProteinColor }}>Protein</button> 
         </div>
+          </div>
 
         <div class = "macro">
-            Fats
+            <h4>Fats</h4>
+          <div class = "buttons">
             <button onClick={() => {
         const bool = !PolyUnsaturated;
         setPolyUnsaturated(bool);
@@ -142,12 +146,13 @@ function App(){
         }} 
          style={{ backgroundColor: SaturatedColor }}>Saturated</button>
 
-
+        </div>
         </div>
 
 
         <div class = "macro">
-            Carbohydrates
+          <h4>Carbohydrates</h4>
+          <div class = "buttons">
              
            <button onClick={() => {
         const bool = !Starch;
@@ -156,7 +161,6 @@ function App(){
         }} 
          style={{ backgroundColor: StarchColor}}>Starches 
          (Complex Carohydrates)</button>
-
          
 <button onClick={() => {
         const bool = !Fiber;
@@ -171,7 +175,7 @@ function App(){
           bool ? setSugarColor("red")  : setSugarColor("gray");
         }} 
          style={{ backgroundColor: SugarColor }}>Sugar</button>
-
+</div>
         </div>
 
     </div>

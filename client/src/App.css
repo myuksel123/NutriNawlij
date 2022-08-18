@@ -46,4 +46,14 @@
 }
 .macro{
   display: flex;
+  flex-direction: column;
+}
+#macros{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.buttons{
+  display: flex;
+  gap: 15px;
 }
