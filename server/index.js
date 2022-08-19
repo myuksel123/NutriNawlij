@@ -42,7 +42,7 @@ const run = (string)=> new Promise((resolve, reject) =>{
 
 let string; 
 console.log(__dirname);
-app.use(express.static(path.resolve('/home/meryem/repos/NutriNear2/server', '../client/build')));
+app.use(express.static(path.resolve('/home/meryem/repos/NutriNear2' +'/client/build')));
 app.post('/data', async function(req,res){
   console.log(req.body)
   string = `Select AVG(Pctrank) OVER (PARTITION BY public.foodinfo.description)
