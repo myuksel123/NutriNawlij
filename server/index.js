@@ -1,7 +1,7 @@
 const path = require('path');
 const cors = require('cors');
 const express = require('express');
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const app = express();
 const { Client } = require("pg");
 const bodyParser = require("body-parser");
@@ -11,13 +11,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
-
-
-/*
-Select avg(Pctrank) OVER (PARTITION BY public.foodinfo.description)
-as theAvg, * from public.foodinfo
-WHERE "name"='Calcium, Ca' AND amount>0 ORDER BY theAvg desc;
-*/
 
 
 let data;
@@ -351,9 +344,6 @@ data = await run(string);
 res.send(data);
 })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-});
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
