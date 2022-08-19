@@ -1,7 +1,7 @@
 const path = require('path');
 const cors = require('cors');
 const express = require('express');
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 const app = express();
 const { Client } = require("pg");
 const bodyParser = require("body-parser");
@@ -41,8 +41,8 @@ const run = (string)=> new Promise((resolve, reject) =>{
   })
 
 let string; 
-
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+console.log(__dirname);
+app.use(express.static(path.resolve('/home/meryem/repos/NutriNear2/server', '../client/build')));
 app.post('/data', async function(req,res){
   console.log(req.body)
   string = `Select AVG(Pctrank) OVER (PARTITION BY public.foodinfo.description)
@@ -343,7 +343,9 @@ string = string + `amount>0 ORDER BY  numVitamins desc, theAvg desc, description
 data = await run(string);
 res.send(data);
 })
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
