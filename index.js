@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 
-
+app.use(express.static(path.resolve('/home/meryem/repos/NutriNear2' +'/client/build')));
 if(process.env.NODE_ENV==="production"){
   app.use(express.static(path.resolve('/home/meryem/repos/NutriNear2' +'/client/build')));
 }
@@ -41,6 +41,7 @@ const run = (string)=> new Promise((resolve, reject) =>{
       console.log(err.message);
       reject(err);
     }
+    client.end;
   })
 
   })
