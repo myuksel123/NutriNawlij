@@ -1,17 +1,24 @@
 const path = require('path');
 const cors = require('cors');
 const express = require('express');
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const app = express();
 const { Client } = require("pg");
+const pool = require("./db");
+
 const bodyParser = require("body-parser");
 
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.json());
 
 
+
+if(process.env.NODE_ENV==="production"){
+  app.use(express.static(path.resolve('/home/meryem/repos/NutriNear2' +'/client/build')));
+}
 
 let data;
 const client = new Client({
@@ -23,7 +30,6 @@ const client = new Client({
 });
 
 client.connect();
-
 const run = (string)=> new Promise((resolve, reject) =>{
   console.log(string);
   client.query(string, (err,res)=>{
@@ -35,14 +41,13 @@ const run = (string)=> new Promise((resolve, reject) =>{
       console.log(err.message);
       reject(err);
     }
-    client.end;
   })
 
   })
 
 let string; 
 console.log(__dirname);
-app.use(express.static(path.resolve('/home/meryem/repos/NutriNear2' +'/client/build')));
+
 app.post('/data', async function(req,res){
   console.log(req.body)
   string = `Select AVG(Pctrank) OVER (PARTITION BY public.foodinfo.description)
