@@ -60,8 +60,13 @@ let string = ``;
     previous = data.rows[i].description;
 }
 
+
     return(
+        <div id = 'catalogpage'>
+        <h1 id="catalogheader">Results</h1>
+        <h3>(Nutrition info is per 100g for each food)</h3>
         <div id='hello'>
+        </div>
         </div>
     );
 }

@@ -18,7 +18,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 15px;
+      gap: 75px;
   }
   .header{
       font-size: 50px;
@@ -33,6 +33,7 @@
   }
 .column{
     display: flex;
+    gap: 30px;
 }
 .fooditem{
   text-align: center;
@@ -71,11 +72,12 @@
 }
 .fooditem{
   margin: 15px;
-  width: 400px;
+  width: 370px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 15px;
+  background-color: greenyellow;
 }
 .foodname{
   font-size: 25px;
@@ -83,4 +85,20 @@
 .button{
   width: 200px;
   height: 100px;
+}
+#hello{
+  margin-left: 150px;
+  margin-right: 150px;
+  gap: 10px;
+}
+#catalogpage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: azure;
+}
+#catalogheader{
+  margin-top:30px;
 }
