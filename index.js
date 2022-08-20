@@ -1,10 +1,11 @@
-const path = require('path');
+const path = require("path");
 const cors = require('cors');
 const express = require('express');
 const PORT = process.env.PORT || 5000;
 const app = express();
 const { Client } = require("pg");
-const pool = require("./db");
+const {Pool} = require("pg");
+//const pool = require("./db");
 
 const bodyParser = require("body-parser");
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 app.use(express.static(path.resolve('/home/meryem/repos/NutriNear2' +'/client/build')));
 if(process.env.NODE_ENV==="production"){
@@ -21,7 +23,10 @@ if(process.env.NODE_ENV==="production"){
 }
 
 let data;
-const client = new Client({
+
+//const devConfig = `postgresql://postgres:admin
+//@localhost:5432/food`;
+const devConfig = ({
   user: "postgres",
   host: "localhost",
   database: "food",
@@ -29,10 +34,30 @@ const client = new Client({
   port: 5432,
 });
 
-client.connect();
-const run = (string)=> new Promise((resolve, reject) =>{
+const proConfig = `postgres://lxblmbdkotwtif:987d2473a75325f2a2ca714433f0b239f8ba41ae676d293cb565d77cb9d49b82@ec2-44-205-63-142.compute-1.amazonaws.com:5432/d3f2p1m8l1ubc0`;
+
+const pool = new Pool({
+  connectionString:
+/* process.env.NODE_ENV === "production" ? */proConfig, //:devConfig,
+ssl: true
+
+}   );
+
+
+/*
+const client = new Client({
+  user: "postgres",
+  host: "localhost",
+  database: "food",
+  password: "admin",
+  port: 5432,
+});
+*/
+
+
+/*const run = (string)=> new Promise((resolve, reject) =>{
   console.log(string);
-  client.query(string, (err,res)=>{
+  pool.query(string, (err,res)=>{
     if(!err){
       data = res;
      resolve(data);
@@ -41,21 +66,22 @@ const run = (string)=> new Promise((resolve, reject) =>{
       console.log(err.message);
       reject(err);
     }
-    client.end;
+   //client.end;
   })
 
   })
-
+*/
 let string; 
 console.log(__dirname);
 
+
 app.post('/data', async function(req,res){
   console.log(req.body)
-  string = `Select AVG(Pctrank) OVER (PARTITION BY public.foodinfo.description)
-  as theAvg, dense_rank() OVER(PARTITION BY public.foodinfo.description ORDER BY name) 
-  + dense_rank() over (partition by public.foodinfo.description
+  string = `Select AVG(Pctrank) OVER (PARTITION BY description)
+  as theAvg, dense_rank() OVER(PARTITION BY description ORDER BY name) 
+  + dense_rank() over (partition by description
      order by name desc) 
-- 1 as numVitamins, * from public.foodinfo
+- 1 as numVitamins, * from herofood
   WHERE `;
   let count =0;
   
@@ -344,11 +370,20 @@ if(req.body.Sugar){
 if(count>0){
   string = string + `AND `;
 }
-string = string + `amount>0 ORDER BY  numVitamins desc, theAvg desc, description FETCH FIRST 5000 ROWS ONLY;`;
-
-data = await run(string);
+string = string + `amount>0 FETCH FIRST 5000 ROWS ONLY;`;
+//ORDER BY  numVitamins desc, theAvg desc, description
+//data = await run(string);
+try{
+data = await pool.query(string);
+}
+catch(err){
+  console.log(err);
+}
 res.send(data);
+
 })
+
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
