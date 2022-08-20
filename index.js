@@ -17,10 +17,10 @@ app.use(express.json());
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-app.use(express.static(path.resolve('/home/meryem/repos/NutriNear2' +'/client/build')));
-if(process.env.NODE_ENV==="production"){
+app.use(express.static(path.resolve(__dirname,'/client/build')));
+/*if(process.env.NODE_ENV==="production"){
   app.use(express.static(path.resolve('/home/meryem/repos/NutriNear2' +'/client/build')));
-}
+}*/
 
 let data;
 
@@ -77,11 +77,7 @@ console.log(__dirname);
 
 app.post('/data', async function(req,res){
   console.log(req.body)
-  string = `Select AVG(Pctrank) OVER (PARTITION BY description)
-  as theAvg, dense_rank() OVER(PARTITION BY description ORDER BY name) 
-  + dense_rank() over (partition by description
-     order by name desc) 
-- 1 as numVitamins, * from herofood
+  string = `Select * from herofood
   WHERE `;
   let count =0;
   
@@ -370,8 +366,8 @@ if(req.body.Sugar){
 if(count>0){
   string = string + `AND `;
 }
-string = string + `amount>0 FETCH FIRST 5000 ROWS ONLY;`;
-//ORDER BY  numVitamins desc, theAvg desc, description
+string = string + `amount>0 ORDER BY numvitamins desc,theavg desc, description 
+FETCH FIRST 5000 ROWS ONLY;`;
 //data = await run(string);
 try{
 data = await pool.query(string);
