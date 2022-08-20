@@ -17,7 +17,7 @@ app.use(express.json());
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-app.use(express.static(path.resolve(__dirname,'/client/build')));
+app.use(express.static(path.join(__dirname+'/client/build')));
 /*if(process.env.NODE_ENV==="production"){
   app.use(express.static(path.resolve('/home/meryem/repos/NutriNear2' +'/client/build')));
 }*/
