@@ -77,7 +77,11 @@ console.log(__dirname);
 
 app.post('/data', async function(req,res){
   console.log(req.body)
-  string = `Select * from herofood
+  string = `Select AVG(Pctrank) OVER (PARTITION BY description)
+  as PctAvg, dense_rank() OVER(PARTITION BY description ORDER BY name) 
+  + dense_rank() over (partition by description
+     order by name desc) 
+- 1 as numNutri, * from herofood
   WHERE `;
   let count =0;
   
@@ -366,7 +370,7 @@ if(req.body.Sugar){
 if(count>0){
   string = string + `AND `;
 }
-string = string + `amount>0 ORDER BY numvitamins desc,theavg desc, description 
+string = string + `amount>0 ORDER BY numNutri desc,PctAvg desc, description 
 FETCH FIRST 5000 ROWS ONLY;`;
 //data = await run(string);
 try{
